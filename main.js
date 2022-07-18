@@ -1,14 +1,16 @@
 
 const container = document.getElementById("container");
-const ROWS = 16;
-const COLS = 16;
+const ROWS = 20;
+const COLS = 20;
+container.style.setProperty('--length', `${800 / COLS}px`);
 function makeRows(rows, cols) {
   container.style.setProperty('--grid-rows', rows);
   container.style.setProperty('--grid-cols', cols);
   for (c = 0; c < (rows * cols); c++) {
     let cell = document.createElement("div");
-    cell.innerText = (c + 1);
     cell.id = `${c + 1}`;
+    //let height = 300 / COLS;
+    //cell.style.height = `${height}px`;
     container.appendChild(cell).className = "grid-item";
   };
 };
@@ -20,14 +22,17 @@ for(i = 0; i < ROWS * COLS; i ++) {
     let test = document.getElementById(`${i + 1}`);
     test.addEventListener("mouseleave", function (event) {
     isMouseHover = false;
-    event.target.textContent = "mouse out";
-    console.log(isMouseHover);
     }, false);
     test.addEventListener("mouseover", function (event) {
     isMouseHover = true
-    event.target.textContent = "mouse in"
-    console.log(isMouseHover)
+    test.style.backgroundColor = 'pink';
     }, false);
 }
+
+const settingButton = document.getElementById("setting-button");
+settingButton.addEventListener("click", function (event) {
+  let input = prompt("Enter the grid size", "16");
+  
+});
 
 
